@@ -8,25 +8,25 @@
 		{
 			"username": "user2",
 			"messageText": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, eligendi consequatur odio saepe nihil ex ipsam maxime eum suscipit, at quod porro. Aliquid cumque vel voluptatum ratione corporis earum qui.",
-			"id": 1,
+			"id": 2,
 			"timestamp": "September 8, 2014 8:04 PM"
 		},
 		{
 			"username": "user3",
 			"messageText": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, eligendi consequatur odio saepe nihil ex ipsam maxime eum suscipit, at quod porro. Aliquid cumque vel voluptatum ratione corporis earum qui.",
-			"id": 1,
+			"id": 3,
 			"timestamp": "September 8, 2014 8:06 PM"
 		},
 		{
 			"username": "user4",
 			"messageText": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, eligendi consequatur odio saepe nihil ex ipsam maxime eum suscipit, at quod porro. Aliquid cumque vel voluptatum ratione corporis earum qui.",
-			"id": 1,
+			"id": 4,
 			"timestamp": "September 8, 2014 8:08 PM"
 		},
 		{
 			"username": "user5",
 			"messageText": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique, eligendi consequatur odio saepe nihil ex ipsam maxime eum suscipit, at quod porro. Aliquid cumque vel voluptatum ratione corporis earum qui.",
-			"id": 1,
+			"id": 5,
 			"timestamp": "September 8, 2014 8:10 PM"
 		}
 	]
