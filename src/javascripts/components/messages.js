@@ -10,11 +10,11 @@ const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
     domString += '<div class="card">';
-    domString += `<h2 id="username">${message.username}</h2>`;
+    domString += `<h2 id="username">Username: ${message.username}</h2>`;
     domString += `<p id="messageText">${message.messageText}</p>`;
-    domString += `<p id="id">${message.id} </p>`;
+    domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-    domString += '<button type="button" class="btn btn-danger">Delete</button>';
+    domString += `<button type="button" class="btn btn-danger" id = "${message.id}">Delete</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -31,9 +31,13 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  messages.push(newMessage);
-  domStringBuilder();
-  id += 1;
+  if (newMessage.id <= 20) {
+    messages.push(newMessage);
+    domStringBuilder();
+    id += 1;
+  } else {
+    console.error('Too many messages');
+  }
 };
 
 const buttonEvents = () => {
