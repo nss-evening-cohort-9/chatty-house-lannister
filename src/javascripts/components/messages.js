@@ -17,7 +17,7 @@ const domStringBuilder = () => {
 
 const getData = () => {
   // If proper response, then return this
-  messageData.getMessagesData()
+  messageData.getMessageData()
     .then((response) => {
       // prints out the array
       const messagesArray = response.data.messages;
