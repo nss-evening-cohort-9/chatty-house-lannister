@@ -12,6 +12,7 @@ const largeText = () => {
 };
 
 const darkTheme = () => {
+  console.error(darkBackground === true);
   if (darkBackground.checked === true) {
     messagesDiv.style.backgroundColor = '#000000';
     messagesDiv.style.color = '#FFFFFF';
