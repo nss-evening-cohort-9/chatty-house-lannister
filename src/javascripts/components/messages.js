@@ -3,6 +3,8 @@ import util from '../helpers/util';
 
 let messages = [];
 
+const getMessageArray = () => messages;
+
 const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
@@ -31,4 +33,4 @@ const getData = () => {
     });
 };
 
-export default { getData };
+export default { getData, getMessageArray };
