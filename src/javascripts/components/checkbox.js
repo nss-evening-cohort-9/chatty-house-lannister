@@ -1,19 +1,19 @@
-const darkCheckbox = document.getElementById('darkTheme');
-const containerDiv = document.getElementById('messages');
+// const darkCheckbox = document.getElementById('darkTheme');
+// const containerDiv = document.getElementById('messages');
 
-checkbox1 = document.getElementById('darkTheme');
-checkbox2 = document.getElementById('darkTheme');
+// checkbox1 = document.getElementById('darkTheme');
+// checkbox2 = document.getElementById('darkTheme');
 
-const checkBoxDarkEvents = () => {
-checkbox1.addEventListener('change', e => {
-  if (checkbox1.checked === true) {
-    containerDiv.style.backgroundColor = 'black'; containerDiv.style.color = 'white';
-  } else {
-    containerDiv.style.backgroundColor = 'white';
-    containerDiv.style.color = 'black';
-  }
+// const checkBoxDarkEvents = () => {
+// checkbox1.addEventListener('change', e => {
+//   if (checkbox1.checked === true) {
+//     containerDiv.style.backgroundColor = 'black'; containerDiv.style.color = 'white';
+//   } else {
+//     containerDiv.style.backgroundColor = 'white';
+//     containerDiv.style.color = 'black';
+//   }
 
-  export default { checkBoxDarkEvents }
+//   export default { checkBoxDarkEvents }
 
    // const checkBoxDark = (x, y) => {
 //   if (y.checked === true) {
