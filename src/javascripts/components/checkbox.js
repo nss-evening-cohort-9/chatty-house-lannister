@@ -14,12 +14,12 @@ const largeText = () => {
 
 const darkTheme = () => {
   if (darkBackground.checked === true) {
-    messagesDiv.style.backGroundColor = 'black';
-    messagesDiv.style.color = 'white';
+    messagesDiv.style.backgroundColor = '#000000';
+    messagesDiv.style.color = '#FFFFFF';
   }
   else {
-    messagesDiv.style.backGroundColor = 'white';
-    messagesDiv.style.color = 'black';
+    messagesDiv.style.backgroundColor = '#000000';
+    messagesDiv.style.color = '#FFFFFF';
   }
 }
 
