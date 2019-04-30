@@ -24,6 +24,7 @@ const addMessage = () => {
 
   newMessage = {
     username: `user${id}`,
+    id,
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
