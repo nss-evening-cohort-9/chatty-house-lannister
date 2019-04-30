@@ -31,5 +31,4 @@ checkbox1.addEventListener('change', e => {
 //   } else {
 //     x.style.font = '12px';
 //   }
-// };
 
