@@ -12,7 +12,7 @@ const largeText = () => {
 
 const cardBackground = () => {
   const cardDark = document.getElementsByClassName('card');
-  for (let i = 0; i < cardDark.length; i+=1) {
+  for (let i = 0; i < cardDark.length; i += 1) {
     if (darkBackground.checked === true) {
       cardDark[i].style.backgroundColor = '#000000';
       cardDark[i].style.color = '#FFFFFF';
