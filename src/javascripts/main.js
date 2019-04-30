@@ -5,6 +5,7 @@ import 'bootstrap';
 const init = () => {
   messages.getData();
   messages.buttonEvents();
+  messages.deleteButtonEvents();
 };
 
 init();

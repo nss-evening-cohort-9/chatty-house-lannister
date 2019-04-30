@@ -14,7 +14,7 @@ const domStringBuilder = () => {
     domString += `<p id="messageText">${message.messageText}</p>`;
     domString += `<p id="id">${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-    domString += '<button type="button" class="btn btn-danger">Delete</button>';
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -34,6 +34,31 @@ const addMessage = () => {
   messages.push(newMessage);
   domStringBuilder();
   id += 1;
+  document.getElementById('message-input').value = '';
+};
+
+const deleteMessage = (e) => {
+  const buttonId = e.target.id;
+  // console.error(buttonId);
+  for (let i = 0; i < messages.length; i += 1) {
+    const messageIndex = i;
+    // console.error(index);
+    if (buttonId === messages[i].id) {
+      console.error(`message ID ${messages[i].id}`);
+      console.error(`Button ID ${buttonId}`);
+      console.error(messageIndex);
+      // console.error(index);
+      // messages.splice(i, 1);
+    }
+  }
+  // domStringBuilder();
+};
+
+const deleteButtonEvents = () => {
+  const deleteButtons = document.getElementsByClassName('delete');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteMessage);
+  }
 };
 
 const buttonEvents = () => {
@@ -49,6 +74,7 @@ const getData = () => {
       messages = messagesArray;
       // Because data has returned successfully
       domStringBuilder();
+      deleteButtonEvents();
     })
   // If wrong response, then return this
     .catch((error) => {
@@ -56,4 +82,9 @@ const getData = () => {
     });
 };
 
-export default { getData, buttonEvents, getId };
+export default {
+  getData,
+  buttonEvents,
+  getId,
+  deleteButtonEvents,
+};
