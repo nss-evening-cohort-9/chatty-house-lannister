@@ -4,6 +4,7 @@ import 'bootstrap';
 
 const init = () => {
   messages.getData();
+  messages.buttonEvents();
 };
 
 init();
