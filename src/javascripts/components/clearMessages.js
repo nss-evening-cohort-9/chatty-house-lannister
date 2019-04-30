@@ -1,4 +1,5 @@
 import util from '../helpers/util.js';
+import messageArray from './messages.js';
 
 const clearMessages = () => {
   
@@ -11,3 +12,5 @@ const checkMessagesArray = () => {
     document.getElementById('clearButton').style.display = 'none';
   }
 };
+
+export default { checkMessagesArray, clearMessages };
