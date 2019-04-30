@@ -1,6 +1,6 @@
 
-const clearMessages = () => {
-  console.error('yeet');
+const clearMessages = (messagesArray) => {
+  messagesArray = [];
 };
 
 const checkMessagesArray = (messagesArray) => {
