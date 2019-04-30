@@ -1,6 +1,7 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
+import clearMessages from './clearMessages';
 
 let messages = [];
 let id = 6;
@@ -21,6 +22,7 @@ const domStringBuilder = () => {
     domString += '</div>';
   });
   util.printToDom('messages', domString);
+  clearMessages.checkMessagesArray(messages);
 };
 
 const addMessage = () => {
@@ -58,5 +60,6 @@ const getData = () => {
     });
 };
 
-export default { getData, buttonEvents, getId, getMessageArray };
-
+export default {
+  getData, buttonEvents, getId, getMessageArray,
+};

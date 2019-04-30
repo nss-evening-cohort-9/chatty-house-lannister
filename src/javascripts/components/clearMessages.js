@@ -1,17 +1,13 @@
-// import util from '../helpers/util';
-import arrayImport from './messages';
-
-let messageArray = [];
 
 const clearMessages = () => {
-  console.error(arrayImport.getMessageArray());
+  console.error('yeet');
 };
 
-const checkMessagesArray = () => {
-  messageArray = arrayImport.getMessageArray();
-  if (messageArray.length !== 0) {
+const checkMessagesArray = (messagesArray) => {
+  // use the parameter to pass the `messages` array to this imported function in messages.js
+  if (messagesArray.length !== 0) {
     document.getElementById('clearButton').addEventListener('click', clearMessages);
-  } else if (messageArray.length === 0) {
+  } else if (messagesArray.length === 0) {
     document.getElementById('clearButton').style.display = 'none';
   }
 };
