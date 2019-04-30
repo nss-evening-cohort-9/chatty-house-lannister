@@ -18,9 +18,8 @@ const domStringBuilder = () => {
   util.printToDom('messages', domString);
 };
 
-let newMessage = {};
-
 const addMessage = () => {
+  let newMessage = {};
   const messageText = document.getElementById('message-input').value;
 
   newMessage = {
