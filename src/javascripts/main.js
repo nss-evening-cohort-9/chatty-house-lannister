@@ -6,6 +6,7 @@ import 'bootstrap';
 const init = () => {
   messages.getData();
   checkMsgArray.checkMessagesArray();
+  messages.buttonEvents();
 };
 
 init();
