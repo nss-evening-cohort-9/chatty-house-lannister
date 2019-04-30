@@ -1,8 +1,11 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
+import timestamp from '../helpers/timestamp';
 
 let messages = [];
+let id = 6;
 
+const getId = () => id;
 const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
@@ -13,6 +16,25 @@ const domStringBuilder = () => {
     domString += '</div>';
   });
   util.printToDom('messages', domString);
+};
+
+const addMessage = () => {
+  let newMessage = {};
+  const messageText = document.getElementById('message-input').value;
+
+  newMessage = {
+    username: `user${id}`,
+    id,
+    messageText,
+    timestamp: timestamp.getTimeStamp().toString(),
+  };
+  messages.push(newMessage);
+  domStringBuilder();
+  id += 1;
+};
+
+const buttonEvents = () => {
+  document.getElementById('add-button').addEventListener('click', addMessage);
 };
 
 const getData = () => {
@@ -31,4 +53,4 @@ const getData = () => {
     });
 };
 
-export default { getData };
+export default { getData, buttonEvents, getId };

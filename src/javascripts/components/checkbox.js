@@ -12,10 +12,10 @@ checkbox1.addEventListener('change', e => {
     containerDiv.style.backgroundColor = 'white';
     containerDiv.style.color = 'black';
   }
-}
 
+  export default { checkBoxDarkEvents }
 
-  // const checkBoxDark = (x, y) => {
+   // const checkBoxDark = (x, y) => {
 //   if (y.checked === true) {
 //     x.style.backgroundColor = '#000000';
 //     x.style.color = '#FFFFFF';
@@ -33,4 +33,3 @@ checkbox1.addEventListener('change', e => {
 //   }
 // };
 
-export default { checkBoxDarkEvents };

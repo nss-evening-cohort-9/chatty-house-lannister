@@ -6,5 +6,7 @@ import 'bootstrap';
 const init = () => {
   messages.getData();
   checkbox.checkBoxDarkEvents();
-}
+  messages.buttonEvents();
+};
+
 init();
