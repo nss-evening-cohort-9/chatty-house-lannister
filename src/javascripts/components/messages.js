@@ -5,20 +5,37 @@ import timestamp from '../helpers/timestamp';
 let messages = [];
 let id = 6;
 
+const getMessageArray = () => messages;
 const getId = () => id;
+
+const checkMessagesArray = () => {
+  if (messages.length === 0) {
+    document.getElementById('clearButton').style.display = 'none';
+  } else if (messages.length !== 0) {
+    document.getElementById('clearButton').style.display = 'block';
+  }
+};
+
 const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
     domString += '<div class="card">';
-    domString += `<h2 id="username">${message.username}</h2>`;
+    domString += `<h2 id="username">Username: ${message.username}</h2>`;
     domString += `<p id="messageText">${message.messageText}</p>`;
-    domString += `<p id="id">${message.id} </p>`;
+    domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
     domString += '</div>';
     domString += '</div>';
   });
   util.printToDom('messages', domString);
+  checkMessagesArray();
+};
+
+const clearAll = () => {
+  const msgLength = messages.length;
+  messages.splice(0, msgLength);
+  domStringBuilder();
 };
 
 const deleteMessage = (e) => {
@@ -53,10 +70,19 @@ const addMessage = () => {
   id += 1;
   document.getElementById('message-input').value = '';
   deleteButtonEvents();
+
+  if (messages.length <= 20) {
+    messages.push(newMessage);
+    domStringBuilder();
+    id += 1;
+  } else {
+    console.error('Too many messages');
+  }
 };
 
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
+  document.getElementById('clearButton').addEventListener('click', clearAll);
 };
 
 const getData = () => {
@@ -81,4 +107,6 @@ export default {
   buttonEvents,
   getId,
   deleteButtonEvents,
+  getMessageArray,
+  clearAll,
 };

@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-
+  <div id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Chatty</a>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" id="message-input" type="text" placeholder="Type here" aria-label="msg-input">
-            <button class="btn btn-outline-success my-2 my-sm-0" id="add-button" type="button">Send</button>
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="button">Clear</button>
+              <input class="form-control mr-sm-2" id="message-input" type="text" placeholder="Type here" aria-label="msg-input">
+              <button class="btn btn-outline-success my-2 my-sm-0" id="add-button" type="button">Send</button>
+              <button class="btn btn-outline-danger my-2 my-sm-0" id="clearButton"type="button">Clear</button>
             <div>
                 <input type="checkbox" id="darkTheme" name="darkTheme"
                        unchecked>
@@ -23,12 +23,13 @@
               </div>
               <div>
                   <input type="checkbox" id="largeText" name="largeText"
-                         checked>
+                         unchecked>
                   <label for="largeText">Enlarge Text</label>
                 </div>
           </form>
         </div>
       </nav>
+    </div>
       <div id="messages" class="d-flex flex-wrap"></div>
 
 </body>
