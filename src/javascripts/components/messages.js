@@ -21,7 +21,7 @@ const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
     domString += '<div class="card">';
-    domString += `<h2 id="username">Username: ${message.username}</h2>`;
+    domString += `<h2 id="username">${message.username}</h2>`;
     domString += `<p id="messageText">${message.messageText}</p>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
@@ -68,8 +68,10 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
+  
   document.getElementById('message-input').value = '';
-  if (messages.length <= 20) {
+  if (messages.length <= 19) {
+
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
