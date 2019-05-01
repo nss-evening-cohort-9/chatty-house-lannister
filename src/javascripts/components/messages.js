@@ -66,10 +66,9 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  
+
   document.getElementById('message-input').value = '';
   if (messages.length <= 19) {
-
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
