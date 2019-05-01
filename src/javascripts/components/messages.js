@@ -1,6 +1,7 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
+import darkCard from '../components/checkbox';
 
 let messages = [];
 let id = 6;
@@ -30,6 +31,7 @@ const domStringBuilder = () => {
   });
   util.printToDom('messages', domString);
   checkMessagesArray();
+  darkCard.cardBackground();
 };
 
 const clearAll = () => {
@@ -76,6 +78,10 @@ const addMessage = () => {
     console.error('Too many messages');
   }
 };
+
+// const editMessage = () => {
+
+// }
 
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);

@@ -40,4 +40,4 @@ const checkBoxEvents = () => {
   darkBackground.addEventListener('click', darkTheme);
 };
 
-export default { checkBoxEvents };
+export default { checkBoxEvents, cardBackground };
