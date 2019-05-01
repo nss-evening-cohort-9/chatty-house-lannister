@@ -1,6 +1,7 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
+import botMsg from './chatBot';
 
 let messages = [];
 let id = 6;
@@ -38,12 +39,26 @@ const clearAll = () => {
   domStringBuilder();
 };
 
-const addMessage = () => {
+const buildBotMessage = (botPersonality) => {
   let newMessage = {};
-  const messageText = document.getElementById('message-input').value;
-
+  let messageText = '';
+  const userInput = document.getElementById('message-input').value;
+  switch (botPersonality) {
+    case 'howdyBot':
+      messageText = botMsg.howdyBot(userInput);
+      break;
+    case 'gangstaBot':
+      messageText = botMsg.gangstaBot(userInput);
+      break;
+    case 'normalBot':
+      messageText = botMsg.normalBot(userInput);
+      break;
+    default:
+      messageText = 'No bot personality detected';
+      return;
+  }
   newMessage = {
-    username: `user${id}`,
+    username: `${botPersonality}`,
     id,
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
@@ -55,6 +70,29 @@ const addMessage = () => {
   } else {
     console.error('Too many messages');
   }
+};
+
+const addMessage = () => {
+  let newMessage = {};
+  const messageText = document.getElementById('message-input').value;
+
+
+  newMessage = {
+    username: `user${id}`,
+    id,
+    messageText,
+    timestamp: timestamp.getTimeStamp().toString(),
+  };
+  if (messages.length <= 20) {
+    messages.push(newMessage);
+    domStringBuilder();
+    id += 1;
+    buildBotMessage();
+  } else {
+    console.error('Too many messages');
+  }
+  const selectedPersonality = document.querySelector('input[name="personality"]:checked').value;
+  window.setTimeout(buildBotMessage(selectedPersonality), 3000);
 };
 
 const buttonEvents = () => {
