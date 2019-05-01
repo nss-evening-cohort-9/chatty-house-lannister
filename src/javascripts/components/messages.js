@@ -41,19 +41,20 @@ const clearAll = () => {
 const deleteMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
-    if (buttonId === messages[i].id.toString()) {
-      messages.splice(i, 1);
+    if (e.target.classList.contains('delete')) {
+      if (buttonId === messages[i].id.toString()) {
+        messages.splice(i, 1);
+      }
+      domStringBuilder();
     }
-    domStringBuilder();
-    deleteButtonEvents();
   }
 };
 
 const deleteButtonEvents = () => {
-  const deleteButtons = document.getElementsByClassName('card');
-  for (let i = 0; i < deleteButtons.length; i += 1) {
-    deleteButtons[i].addEventListener('click', deleteMessage);
-  }
+  document.getElementById('messages').addEventListener('click', deleteMessage);
+  // for (let i = 0; i < deleteButtons.length; i += 1) {
+  //   deleteButtons[i].addEventListener('click', deleteMessage);
+  // }
 };
 
 const addMessage = () => {
@@ -65,16 +66,12 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  messages.push(newMessage);
-  domStringBuilder();
-  id += 1;
   document.getElementById('message-input').value = '';
-  deleteButtonEvents();
-
   if (messages.length <= 20) {
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
+    deleteButtonEvents();
   } else {
     console.error('Too many messages');
   }
