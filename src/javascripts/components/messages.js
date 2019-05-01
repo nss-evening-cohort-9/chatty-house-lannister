@@ -48,7 +48,7 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  if (newMessage.id <= 20) {
+  if (messages.length <= 20) {
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
