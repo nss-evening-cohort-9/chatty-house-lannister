@@ -13,7 +13,7 @@
         <a class="navbar-brand" href="#">Chatty</a>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="message-input" type="text" placeholder="Type here" aria-label="msg-input">
+              <input class="form-control mr-sm-2" id="message-input" data-meteor-emoji="true" type="text" placeholder="Type here" aria-label="msg-input">
               <button class="btn btn-outline-success my-2 my-sm-0" id="add-button" type="button">Send</button>
               <button class="btn btn-outline-danger my-2 my-sm-0" id="clearButton"type="button">Clear</button>
             <div>
@@ -41,6 +41,11 @@
       </div>';
       </div>';
       <div id="messages" class="d-flex flex-wrap"></div>
-
+      <script src="../src/javascripts/components/meteorEmoji.min.js"></script>
+      <script>
+        (() => {
+          new MeteorEmoji()
+        })()
+      </script>
 </body>
 </html>
