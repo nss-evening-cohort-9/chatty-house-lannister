@@ -1,7 +1,7 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
-import darkCard from '../components/checkbox';
+import darkCard from './checkbox';
 
 let messages = [];
 let id = 6;
@@ -68,7 +68,7 @@ const addMessage = () => {
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  
+
   document.getElementById('message-input').value = '';
   if (messages.length <= 19) {
 
