@@ -21,10 +21,27 @@ const domStringBuilder = () => {
   util.printToDom('messages', domString);
 };
 
+const deleteMessage = (e) => {
+  const buttonId = e.target.id;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (buttonId === messages[i].id.toString()) {
+      messages.splice(i, 1);
+    }
+    domStringBuilder();
+    deleteButtonEvents();
+  }
+};
+
+const deleteButtonEvents = () => {
+  const deleteButtons = document.getElementsByClassName('card');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteMessage);
+  }
+};
+
 const addMessage = () => {
   let newMessage = {};
   const messageText = document.getElementById('message-input').value;
-
   newMessage = {
     username: `user${id}`,
     id,
@@ -35,30 +52,7 @@ const addMessage = () => {
   domStringBuilder();
   id += 1;
   document.getElementById('message-input').value = '';
-};
-
-const deleteMessage = (e) => {
-  const buttonId = e.target.id;
-  // console.error(buttonId);
-  for (let i = 0; i < messages.length; i += 1) {
-    const messageIndex = i;
-    // console.error(index);
-    if (buttonId === messages[i].id) {
-      console.error(`message ID ${messages[i].id}`);
-      console.error(`Button ID ${buttonId}`);
-      console.error(messageIndex);
-      // console.error(index);
-      // messages.splice(i, 1);
-    }
-  }
-  // domStringBuilder();
-};
-
-const deleteButtonEvents = () => {
-  const deleteButtons = document.getElementsByClassName('delete');
-  for (let i = 0; i < deleteButtons.length; i += 1) {
-    deleteButtons[i].addEventListener('click', deleteMessage);
-  }
+  deleteButtonEvents();
 };
 
 const buttonEvents = () => {
