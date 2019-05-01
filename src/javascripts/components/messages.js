@@ -1,13 +1,20 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
-import clearMessages from './clearMessages';
 
 let messages = [];
 let id = 6;
 
 const getMessageArray = () => messages;
 const getId = () => id;
+
+const checkMessagesArray = () => {
+  if (messages.length === 0) {
+    document.getElementById('clearButton').style.display = 'none';
+  } else if (messages.length !== 0) {
+    document.getElementById('clearButton').style.display = 'block';
+  }
+};
 
 const domStringBuilder = () => {
   let domString = '';
@@ -22,7 +29,13 @@ const domStringBuilder = () => {
     domString += '</div>';
   });
   util.printToDom('messages', domString);
-  clearMessages.checkMessagesArray(messages);
+  checkMessagesArray();
+};
+
+const clearAll = () => {
+  const msgLength = messages.length;
+  messages.splice(0, msgLength);
+  domStringBuilder();
 };
 
 const addMessage = () => {
@@ -46,6 +59,7 @@ const addMessage = () => {
 
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
+  document.getElementById('clearButton').addEventListener('click', clearAll);
 };
 
 const getData = () => {
@@ -65,5 +79,5 @@ const getData = () => {
 };
 
 export default {
-  getData, buttonEvents, getId, getMessageArray,
+  getData, buttonEvents, getId, getMessageArray, clearAll,
 };
