@@ -30,7 +30,7 @@ const domStringBuilder = () => {
     domString += '</div>';
     domString += '</div>';
     domString += `<div id="${message.id}EditForm" class="${message.hide}CommentForm">`;
-    domString += `<textarea rows="5" col="30" class="newBodyText">${message.messageText}</textarea>`;
+    domString += `<textarea class="newBodyText">${message.messageText}</textarea>`;
     domString += `<button id="${message.id}" class="btn btn-primary mb-2 saveMessage">Save</button>`;
     domString += '</div>';
     domString += '</div>';
