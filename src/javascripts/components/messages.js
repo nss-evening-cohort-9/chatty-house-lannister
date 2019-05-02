@@ -26,6 +26,12 @@ const domStringBuilder = () => {
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
+    domString += '</div>';
+    domString += '</div>';
+    domString += `<div id="${message.id}EditForm" class="${message.hide}CommentForm">`;
+    domString += `<textarea rows="5" col="30" class="newBodyText">${message.messageText}</textarea>`;
+    domString += `<button id="${message.id}" class="btn btn-primary mb-2 saveMessage">Save</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -67,6 +73,7 @@ const addMessage = () => {
     id,
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
+    edit: 'hide',
   };
 
   document.getElementById('message-input').value = '';
@@ -75,14 +82,58 @@ const addMessage = () => {
     domStringBuilder();
     id += 1;
     deleteButtonEvents();
+    editButtonEvents();
   } else {
     console.error('Too many messages');
   }
 };
 
-// const editMessage = () => {
+// Edit Events Start
 
-// }
+const editMessage = (e) => {
+  const buttonId = e.target.id;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (e.target.classList.contains('edit')) {
+      if (buttonId === messages[i].id.toString()) {
+        messages.edit = 'show';
+      } else {
+        messages.edit = 'hide';
+      }
+      domStringBuilder();
+      // saveMessage();
+      editButtonEvents();
+    }
+  }
+};
+
+const submitEdit = (e) => {
+  const buttonId = e.target.id;
+  messages.forEach((message) => {
+    if (message.id === buttonId) {
+      const newBodyTextForm = e.target.id;
+      messages.messageText = newBodyTextForm.value;
+      messages.edit = 'hidden';
+    }
+  });
+  domStringBuilder(messages);
+  saveMessage();
+};
+
+const saveMessage = () => {
+  const savingMessage = document.getElementById('saveBtn');
+  for (let i = 0; i < savingMessage.length; i = +1) {
+    savingMessage[i].addEventListener('click', editMessage);
+  }
+};
+
+const editButtonEvents = () => {
+  const editButtons = document.getElementsByClassName('edit');
+  for (let i = 0; i < editButtons.length; i += 1) {
+    editButtons[i].addEventListener('click', submitEdit);
+  }
+};
+
+// end of edit
 
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
@@ -99,6 +150,7 @@ const getData = () => {
       // Because data has returned successfully
       domStringBuilder();
       deleteButtonEvents();
+      editButtonEvents();
     })
   // If wrong response, then return this
     .catch((error) => {
