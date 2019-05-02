@@ -4,10 +4,12 @@ import timestamp from '../helpers/timestamp';
 
 let messages = [];
 let id = 6;
+let username = '';
 
 const getMessageArray = () => messages;
 const getId = () => id;
 
+// checks to see if clear button should be visible or hidden
 const checkMessagesArray = () => {
   if (messages.length === 0) {
     document.getElementById('clearButton').style.display = 'none';
@@ -16,6 +18,17 @@ const checkMessagesArray = () => {
   }
 };
 
+// allows users to select the username for their message
+const usernameSelector = () => {
+  const usernameButtons = document.getElementsByClassName('usernameButtons');
+  for (let i = 0; i < usernameButtons.length; i += 1) {
+    if (usernameButtons[i].checked === true) {
+      username = usernameButtons[i].id;
+    }
+  }
+};
+
+// build domString
 const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
@@ -32,12 +45,14 @@ const domStringBuilder = () => {
   checkMessagesArray();
 };
 
+// clear button - clears all the elements from the array and prints empty array to DOM
 const clearAll = () => {
   const msgLength = messages.length;
   messages.splice(0, msgLength);
   domStringBuilder();
 };
 
+// delete button - deletes targeted message from array and reprints the updated array
 const deleteMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
@@ -50,18 +65,13 @@ const deleteMessage = (e) => {
   }
 };
 
-const deleteButtonEvents = () => {
-  document.getElementById('messages').addEventListener('click', deleteMessage);
-  // for (let i = 0; i < deleteButtons.length; i += 1) {
-  //   deleteButtons[i].addEventListener('click', deleteMessage);
-  // }
-};
-
+// add message button - takes input from text field and adds it to the messages div
 const addMessage = () => {
+  usernameSelector();
   let newMessage = {};
   const messageText = document.getElementById('message-input').value;
   newMessage = {
-    username: `user${id}`,
+    username: `${username}`,
     id,
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
@@ -69,18 +79,20 @@ const addMessage = () => {
 
   document.getElementById('message-input').value = '';
   if (messages.length <= 19) {
+    usernameSelector();
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
-    deleteButtonEvents();
   } else {
     console.error('Too many messages');
   }
 };
 
+// button events
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
   document.getElementById('clearButton').addEventListener('click', clearAll);
+  document.getElementById('messages').addEventListener('click', deleteMessage);
 };
 
 const getData = () => {
@@ -92,7 +104,6 @@ const getData = () => {
       messages = messagesArray;
       // Because data has returned successfully
       domStringBuilder();
-      deleteButtonEvents();
     })
   // If wrong response, then return this
     .catch((error) => {
@@ -104,7 +115,6 @@ export default {
   getData,
   buttonEvents,
   getId,
-  deleteButtonEvents,
   getMessageArray,
   clearAll,
 };
