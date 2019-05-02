@@ -30,6 +30,7 @@ const howdyBot = (keyword) => {
 const normalBot = (keyword) => {
   let botPhrase = '';
   const phraseList = ['0', '1', '2', '3'];
+  const listLength = phraseList.length;
   switch (keyword) {
     case 'Hello':
       botPhrase = 'Greetings.';
@@ -38,7 +39,7 @@ const normalBot = (keyword) => {
       botPhrase = 'Yes';
       break;
     case 'random':
-      getRandomPhraseIndex(phraseList.length);
+      botPhrase = getRandomPhraseIndex(listLength);
       break;
     default:
       botPhrase = 'Huh?';

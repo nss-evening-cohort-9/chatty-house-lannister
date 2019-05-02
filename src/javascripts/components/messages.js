@@ -39,9 +39,8 @@ const clearAll = () => {
   domStringBuilder();
 };
 
-<<<<<<< HEAD
 const buildBotMessage = (botPersonality) => {
-  let newMessage = {};
+  let newBotMessage = {};
   let messageText = '';
   const userInput = document.getElementById('message-input').value;
   switch (botPersonality) {
@@ -56,16 +55,16 @@ const buildBotMessage = (botPersonality) => {
       break;
     default:
       messageText = 'No bot personality detected';
-      return;
+      break;
   }
-  newMessage = {
+  newBotMessage = {
     username: `${botPersonality}`,
     id,
     messageText,
     timestamp: timestamp.getTimeStamp().toString(),
   };
-  if (messages.length <= 20) {
-    messages.push(newMessage);
+  if (messages.length <= 19) {
+    messages.push(newBotMessage);
     domStringBuilder();
     id += 1;
   } else {
@@ -73,12 +72,6 @@ const buildBotMessage = (botPersonality) => {
   }
 };
 
-const addMessage = () => {
-  let newMessage = {};
-  const messageText = document.getElementById('message-input').value;
-
-
-=======
 const deleteMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
@@ -98,10 +91,11 @@ const deleteButtonEvents = () => {
   // }
 };
 
+
 const addMessage = () => {
   let newMessage = {};
   const messageText = document.getElementById('message-input').value;
->>>>>>> master
+  const selectedPersonality = document.querySelector('input[name="personality"]:checked').value;
   newMessage = {
     username: `user${id}`,
     id,
@@ -109,21 +103,16 @@ const addMessage = () => {
     timestamp: timestamp.getTimeStamp().toString(),
   };
 
-  document.getElementById('message-input').value = '';
   if (messages.length <= 19) {
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
-<<<<<<< HEAD
-    buildBotMessage();
-=======
+    window.setTimeout(buildBotMessage(selectedPersonality), 3000);
     deleteButtonEvents();
->>>>>>> master
+    document.getElementById('message-input').value = '';
   } else {
     console.error('Too many messages');
   }
-  const selectedPersonality = document.querySelector('input[name="personality"]:checked').value;
-  window.setTimeout(buildBotMessage(selectedPersonality), 3000);
 };
 
 const buttonEvents = () => {
