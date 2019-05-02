@@ -7,7 +7,6 @@ const init = () => {
   messages.getData();
   checkbox.checkBoxEvents();
   messages.buttonEvents();
-  messages.deleteButtonEvents();
 };
 
 init();
