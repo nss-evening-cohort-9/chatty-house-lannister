@@ -53,10 +53,31 @@ const clearAll = () => {
   domStringBuilder();
 };
 
-const buildBotMessage = (botPersonality) => {
+// delete button - deletes targeted message from array and reprints the updated array
+const deleteMessage = (e) => {
+  const buttonId = e.target.id;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (e.target.classList.contains('delete')) {
+      if (buttonId === messages[i].id.toString()) {
+        messages.splice(i, 1);
+      }
+      domStringBuilder();
+    }
+  }
+};
+
+const deleteButtonEvents = () => {
+  document.getElementById('messages').addEventListener('click', deleteMessage);
+  // for (let i = 0; i < deleteButtons.length; i += 1) {
+  //   deleteButtons[i].addEventListener('click', deleteMessage);
+  // }
+};
+
+
+const buildBotMessage = (botPersonality, textInput) => {
   let newBotMessage = {};
   let messageText = '';
-  const userInput = document.getElementById('message-input').value;
+  const userInput = textInput;
   switch (botPersonality) {
     case 'howdyBot':
       messageText = botMsg.howdyBot(userInput);
@@ -81,29 +102,10 @@ const buildBotMessage = (botPersonality) => {
     messages.push(newBotMessage);
     domStringBuilder();
     id += 1;
+    deleteButtonEvents();
   } else {
     console.error('Too many messages');
   }
-};
-
-// delete button - deletes targeted message from array and reprints the updated array
-const deleteMessage = (e) => {
-  const buttonId = e.target.id;
-  for (let i = 0; i < messages.length; i += 1) {
-    if (e.target.classList.contains('delete')) {
-      if (buttonId === messages[i].id.toString()) {
-        messages.splice(i, 1);
-      }
-      domStringBuilder();
-    }
-  }
-};
-
-const deleteButtonEvents = () => {
-  document.getElementById('messages').addEventListener('click', deleteMessage);
-  // for (let i = 0; i < deleteButtons.length; i += 1) {
-  //   deleteButtons[i].addEventListener('click', deleteMessage);
-  // }
 };
 
 // add message button - takes input from text field and adds it to the messages div
@@ -124,9 +126,9 @@ const addMessage = () => {
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
-    window.setTimeout(buildBotMessage(selectedPersonality), 3000);
-    deleteButtonEvents();
     document.getElementById('message-input').value = '';
+    deleteButtonEvents();
+    setTimeout(() => { buildBotMessage(selectedPersonality, messageText); }, 3000);
   } else {
     console.error('Too many messages');
   }

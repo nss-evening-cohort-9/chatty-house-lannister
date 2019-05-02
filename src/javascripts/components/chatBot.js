@@ -1,45 +1,64 @@
 // import domString from './messages';
-const getRandomPhraseIndex = max => Math.floor(Math.random() * max);
+const getRandomPhraseIndex = max => Math.floor(Math.random() * Math.floor(max));
 
-const gangstaBot = (keyword) => {
+const howdyBot = (keyword) => {
   let botPhrase = '';
-  // const phraseList = ['0', '1', '2', '3'];
+  const phraseList = [
+    'You gotta lotta nerve talkin\' to the sheriff\'s deputy that way.',
+    'That the whiskey talkin\', or \'re you lookin\' fer trouble?',
+    'Let\'s settle this... AT HIGH NOON',
+    'Watch yer tongue, boy.',
+  ];
+  const listLength = phraseList.length;
   switch (keyword) {
-    case 'suh':
-      botPhrase = 'BIGGIE KILLED TUPAC';
+    case 'Howdy':
+      botPhrase = 'Howdy pardner!';
+      break;
+    case 'This town ain\'t big enough for the two of us':
+      botPhrase = phraseList[getRandomPhraseIndex(listLength)];
       break;
     default:
-      botPhrase = 'WEST SIDE';
+      botPhrase = 'The hell you talkin\' \'bout boy?';
   }
   return botPhrase;
 };
 
-const howdyBot = (keyword) => {
+const gangstaBot = (keyword) => {
   let botPhrase = '';
-  // const phraseList = ['0', '1', '2', '3'];
+  const phraseList = [
+    'East side fools got NOTHIN\' on us.',
+    'BIGGIE KILLED TUPAC',
+    'The hologram\'s bitchin\'... but it just ain\'t the same, y\'know?',
+  ];
+  const listLength = phraseList.length;
   switch (keyword) {
-    case 'howdy':
-      botPhrase = 'Howdy pardner!';
+    case 'Suh':
+      botPhrase = 'What\'s up man?';
+      break;
+    case 'What\'s poppin\' B?':
+      botPhrase = phraseList[getRandomPhraseIndex(listLength)];
       break;
     default:
-      botPhrase = 'THERE\'S A SNAKE IN MY BOOT!';
+      botPhrase = 'The f***?';
   }
   return botPhrase;
 };
 
 const normalBot = (keyword) => {
   let botPhrase = '';
-  const phraseList = ['0', '1', '2', '3'];
+  const phraseList = [
+    'THis is the first phrase',
+    'SECOND PHRASE ACTIVATED',
+    'THird phrase workin m8',
+    'Did you know ',
+  ];
   const listLength = phraseList.length;
   switch (keyword) {
     case 'Hello':
       botPhrase = 'Greetings.';
       break;
-    case 'When will I die?':
-      botPhrase = 'Yes';
-      break;
-    case 'random':
-      botPhrase = getRandomPhraseIndex(listLength);
+    case 'Tell me a fact':
+      botPhrase = phraseList[getRandomPhraseIndex(listLength)];
       break;
     default:
       botPhrase = 'Huh?';
@@ -47,4 +66,8 @@ const normalBot = (keyword) => {
   return botPhrase;
 };
 
-export default { gangstaBot, howdyBot, normalBot };
+export default {
+  gangstaBot,
+  howdyBot,
+  normalBot,
+};
