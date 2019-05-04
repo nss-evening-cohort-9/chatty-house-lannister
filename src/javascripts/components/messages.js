@@ -40,11 +40,9 @@ const domStringBuilder = () => {
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
-    domString += '</div>';
-    domString += '</div>';
     domString += `<div id="${message.id}EditForm" class="${message.hide}CommentForm">`;
     domString += `<textarea class="newBodyText">${message.messageText}</textarea>`;
-    domString += `<button id="${message.id}" class="btn btn-primary mb-2 saveMessage">Save</button>`;
+    domString += `<button id="${message.id}" class="btn btn-primary mb-2 saveBtn">Save</button>`;
     domString += '</div>';
     domString += '</div>';
   });
@@ -111,7 +109,7 @@ const editMessage = (e) => {
         messages.edit = 'hide';
       }
       domStringBuilder();
-      // saveMessage();
+      saveMessage();
       editButtonEvents();
     }
   }
