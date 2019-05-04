@@ -15,5 +15,21 @@ $ To get started, please follow the instructions found here: https://github.com/
 ```
 
 ## Running
+```
 $ npm start
+```
 
+### Chatbot functionality
+Depending on which chatbot personality is selected, and what the user inputs, there can be multiple outputs. Inputs must be identical to those documented, otherwise the bot will not recognize the statement.
+### Possible Inputs:
+#### For "DARN TOOTIN'" personality:
+* Howdy
+* This town ain't big enough for the two of us
+
+#### For "Normal" personality:
+* Hello
+* Tell me something cool
+
+#### For "WEST SIDE" personality:
+* Suh
+* What's poppin' B?
