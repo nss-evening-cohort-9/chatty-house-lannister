@@ -35,7 +35,11 @@ const domStringBuilder = () => {
   messages.forEach((message) => {
     domString += '<div class="card">';
     domString += `<h2 id="username">${message.username}</h2>`;
-    domString += `<p id="messageText">${message.messageText}</p>`;
+    domString += '<div class="input-group">';
+    domString += `<textarea class="form-control editBox" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
+    domString += `<div id=${message.id}><p>${message.messageText}</p></div>`;
+    domString += '</div>';
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
@@ -68,11 +72,26 @@ const deleteMessage = (e) => {
 
 const deleteButtonEvents = () => {
   document.getElementById('messages').addEventListener('click', deleteMessage);
-  // for (let i = 0; i < deleteButtons.length; i += 1) {
-  //   deleteButtons[i].addEventListener('click', deleteMessage);
-  // }
 };
 
+// edit function
+const editMessage = (e) => {
+  const buttonId = e.target.id;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (e.target.classList.contains('edit')) {
+      if (buttonId === messages[i].id.toString()) {
+        messages[i].messageText = document.getElementById(messages[i].id).value;
+        console.error(messages[i].messageText);
+        console.error(messages);
+        domStringBuilder();
+      }
+    }
+  }
+};
+
+const editEvents = () => {
+  document.getElementById('messages').addEventListener('click', editMessage);
+};
 
 const buildBotMessage = (botPersonality, textInput) => {
   let newBotMessage = {};
@@ -134,6 +153,8 @@ const addMessage = () => {
   }
 };
 
+// edit function
+
 // button events
 const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
@@ -150,6 +171,7 @@ const getData = () => {
       messages = messagesArray;
       // Because data has returned successfully
       domStringBuilder();
+      editEvents();
     })
   // If wrong response, then return this
     .catch((error) => {
