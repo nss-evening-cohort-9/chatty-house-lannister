@@ -2,6 +2,7 @@ import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
 import darkCard from './checkbox';
+import botMsg from './chatBot';
 
 let messages = [];
 let id = 6;
@@ -71,11 +72,54 @@ const deleteMessage = (e) => {
   }
 };
 
+const deleteButtonEvents = () => {
+  document.getElementById('messages').addEventListener('click', deleteMessage);
+  // for (let i = 0; i < deleteButtons.length; i += 1) {
+  //   deleteButtons[i].addEventListener('click', deleteMessage);
+  // }
+};
+
+
+const buildBotMessage = (botPersonality, textInput) => {
+  let newBotMessage = {};
+  let messageText = '';
+  const userInput = textInput;
+  switch (botPersonality) {
+    case 'howdyBot':
+      messageText = botMsg.howdyBot(userInput);
+      break;
+    case 'gangstaBot':
+      messageText = botMsg.gangstaBot(userInput);
+      break;
+    case 'normalBot':
+      messageText = botMsg.normalBot(userInput);
+      break;
+    default:
+      messageText = 'No bot personality detected';
+      break;
+  }
+  newBotMessage = {
+    username: `${botPersonality}`,
+    id,
+    messageText,
+    timestamp: timestamp.getTimeStamp().toString(),
+  };
+  if (messages.length <= 19) {
+    messages.push(newBotMessage);
+    domStringBuilder();
+    id += 1;
+    deleteButtonEvents();
+  } else {
+    console.error('Too many messages');
+  }
+};
+
 // add message button - takes input from text field and adds it to the messages div
 const addMessage = () => {
   usernameSelector();
   let newMessage = {};
   const messageText = document.getElementById('message-input').value;
+  const selectedPersonality = document.querySelector('input[name="personality"]:checked').value;
   newMessage = {
     username: `${username}`,
     id,
@@ -84,14 +128,15 @@ const addMessage = () => {
     edit: 'hide',
   };
 
-  document.getElementById('message-input').value = '';
   if (messages.length <= 19) {
     usernameSelector();
     messages.push(newMessage);
     domStringBuilder();
     id += 1;
-    deleteButtonEvents();
     editButtonEvents();
+    document.getElementById('message-input').value = '';
+    deleteButtonEvents();
+    setTimeout(() => { buildBotMessage(selectedPersonality, messageText); }, 3000);
   } else {
     console.error('Too many messages');
   }
