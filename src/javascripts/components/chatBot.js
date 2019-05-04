@@ -47,17 +47,17 @@ const gangstaBot = (keyword) => {
 const normalBot = (keyword) => {
   let botPhrase = '';
   const phraseList = [
-    'THis is the first phrase',
-    'SECOND PHRASE ACTIVATED',
-    'THird phrase workin m8',
-    'Did you know ',
+    'All animals require oxygen to breathe.',
+    'The hypotenuse is the longest side of a triangle.',
+    'In approximately 218 BCE, a Carthaginian general named Hannibal Barca successfully led an army through the snowy peaks of The Alps to launch a sneak attack against the Roman city of Trebia, where the garrisoned Roman forces suffered a crushing defeat at the hands of Hannibal\'s weary, yet motivated troops.',
+    'Repeatedly being knocked unconscious results in significant brain damage.',
   ];
   const listLength = phraseList.length;
   switch (keyword) {
     case 'Hello':
       botPhrase = 'Greetings.';
       break;
-    case 'Tell me a fact':
+    case 'Tell me something cool':
       botPhrase = phraseList[getRandomPhraseIndex(listLength)];
       break;
     default:
