@@ -44,10 +44,11 @@ const domStringBuilder = () => {
     domString += '<div class="card">';
     domString += `<h2 id="username">${message.username}</h2>`;
     domString += '<div class="input-group editStuff">';
-    domString += `<textarea class="form-control editBox" id="editText" aria-label="With textarea">${message.messageText}</textarea>`;
+    domString += `<textarea class="form-control editBox" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
     domString += '</div>';
     domString += `<div id=${message.id}><p>${message.messageText}</p></div>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger save">Save</button>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
@@ -82,21 +83,32 @@ const deleteButtonEvents = () => {
   document.getElementById('messages').addEventListener('click', deleteMessage);
 };
 
+const saveMessage = (e) => {
+  const buttonId = e.target.id;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (e.target.classList.contains('edit')) {
+      if (buttonId === messages[i].id.toString()) {
+        document.getElementsByClassName('editBox').style.display = 'none';
+        domStringBuilder();
+      }
+    }
+  }
+};
+
 // edit function
 const editMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
     if (e.target.classList.contains('edit')) {
-      document.getElementById('editText').style.display = 'block';
       if (buttonId === messages[i].id.toString()) {
-        messages[i].messageText = document.getElementById('editText').value;
+        document.getElementById(`${messages[i].id}`).style.visibility = 'visible';
+        messages[i].messageText = document.getElementById(`${messages[i].id}`).value;
         console.error(messages[i].messageText);
         console.error(messages);
         domStringBuilder();
       }
     }
   }
-  // document.getElementById('editText').style.display = 'none';
 };
 
 const editEvents = () => {
@@ -170,6 +182,7 @@ const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
   document.getElementById('clearButton').addEventListener('click', clearAll);
   document.getElementById('messages').addEventListener('click', deleteMessage);
+  document.getElementById('messages').addEventListener('click', saveMessage);
 };
 
 const getData = () => {
