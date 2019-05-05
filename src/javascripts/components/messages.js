@@ -1,7 +1,6 @@
 import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
-import darkCard from './checkbox';
 import botMsg from './chatBot';
 
 let messages = [];
@@ -35,21 +34,21 @@ const domStringBuilder = () => {
   let domString = '';
   messages.forEach((message) => {
     domString += '<div class="card">';
-    domString += `<div id="username">${message.username}</div>`;
-    domString += `<textarea id="messageText" class = "hidden">${message.messageText}</textarea>`;
-    // domString += `<textarea id="${message.id}EditForm" class="${message.hide}CommentForm"></textarea>`;
-    // domString += `<textarea class="newBodyText">${message.messageText}</textarea>`;
-    domString += `<button id="${message.id}" class="btn btn-primary mb-2 saveBtn">Save</button>`;
+    domString += `<h2 id="username">${message.username}</h2>`;
+    domString += '<div class="input-group">';
+    domString += `<textarea class="form-control editBox  hideStuff" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
+    domString += `<div id=${message.id}><p>${message.messageText}</p></div>`;
+    domString += '</div>';
+    domString += `<button type="button" id="edit${message.id}" class="btn btn-danger edit">Edit</button>`;
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger save  hideStuff">Save</button>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
-    domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
     domString += '</div>';
-    domString += '</textarea>';
+    domString += '</div>';
   });
   util.printToDom('messages', domString);
   checkMessagesArray();
-  darkCard.cardBackground();
 };
 
 // clear button - clears all the elements from the array and prints empty array to DOM
@@ -74,9 +73,6 @@ const deleteMessage = (e) => {
 
 const deleteButtonEvents = () => {
   document.getElementById('messages').addEventListener('click', deleteMessage);
-  // for (let i = 0; i < deleteButtons.length; i += 1) {
-  //   deleteButtons[i].addEventListener('click', deleteMessage);
-  // }
 };
 
 
@@ -140,48 +136,45 @@ const addMessage = () => {
     console.error('Too many messages');
   }
 };
+// edit function
+const editButton = document.getElementsByClassName('editBox');
+const saveButton = document.getElementsByClassName('save');
+const classEdit = document.getElementsByClassName('edit');
 
-// Edit Events Start
+const textEdit = () => {
+  editButton.classList.toggle('hideStuff');
+  saveButton.classList.toggle('hideStuff');
+  classEdit.classList.toggle('hideStuff');
+};
 
 const editMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
     if (e.target.classList.contains('edit')) {
       if (buttonId === messages[i].id.toString()) {
-        messages.splice(i, 0);
+        messages[i].messageText = document.getElementById(messages[i].id).value;
+        console.error(messages[i].messageText);
+        console.error(messages);
+        domStringBuilder();
       }
-      domStringBuilder();
     }
   }
 };
 
-const addComment = (e) => {
-  e.preventDefault();
-  const commentName = inputName.value;
-  const commentContent = inputComment.value;
-  const newComment = {
-    messageText: commentName,
-    hideOrShowEdit: 'hidden',
-    hideOrShowComment: 'hidden',
-  };
-  messages.push(newComment);
-  commentNum++;
-  domStringBuilder(messages);
-  inputName.value = '';
-  inputComment.value = '';
-  smoothScroll(messages);
-};
+// const funEdit = () => {
+//   for (let i = 0; i < messages.length; i += 1) {
+//     document.getElementById(`edit${[i]}`).addEventListener('click', textEdit);
+//   }
+// };
 
-const editComment = (e) => {
-  const buttonId = e.target.parentElement.id;
-  messages.forEach((message) => {
-    if (message.id === buttonId) {
-      messages.hideOrShowEdit = 'shown';
-    } else {
-      messages.hideOrShowEdit = 'hidden';
-    }
-  });
-  domStringBuilder(messages);
+const editEvents = () => {
+  document.getElementById('messages').addEventListener('click', editMessage);
+  for (let i = 0; i < classEdit.length; i += 1) {
+    classEdit[i].addEventListener('click', textEdit);
+  }
+  for (let i = 0; i < saveButton.length; i += 1) {
+    saveButton[i].addEventListener('click', textEdit);
+  }
 };
 
 // end edit
@@ -190,7 +183,7 @@ const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
   document.getElementById('clearButton').addEventListener('click', clearAll);
   document.getElementById('messages').addEventListener('click', deleteMessage);
-  document.getElementById('messages').addEventListener('click', editMessage);
+  // document.getElementById('messages').addEventListener('click', editMessage);
 };
 
 const getData = () => {
@@ -203,6 +196,8 @@ const getData = () => {
       // Because data has returned successfully
       domStringBuilder();
       deleteButtonEvents();
+      editEvents();
+      // funEdit();
     })
   // If wrong response, then return this
     .catch((error) => {

@@ -4,9 +4,9 @@ const messagesDiv = document.getElementById('messages');
 
 const largeText = () => {
   if (fontSize.checked === true) {
-    messagesDiv.style.fontSize = '20px';
+    messagesDiv.style.fontSize = '24px';
   } else {
-    messagesDiv.style.fontSize = '12px';
+    messagesDiv.style.fontSize = '16px';
   }
 };
 
