@@ -137,9 +137,20 @@ const addMessage = () => {
   }
 };
 // edit function
-const editButton = document.getElementsByClassName('editBox');
+// const editButton = document.closest('editBox');
 const saveButton = document.getElementsByClassName('save');
 const classEdit = document.getElementsByClassName('edit');
+
+const editBox = (e) => {
+  const editButton = document.getElementsByClassName('editBox');
+  for(let i = 0; i < editButton.length; i += 1) {
+    const targetButton = editButton[i];
+  targetButton.addEventListener('click', (e) => {
+    const editBtn = e.target.id.parentNode.parentNode.id
+    editMessage(editButton);
+
+  })
+}
 
 const textEdit = () => {
   editButton.classList.toggle('hideStuff');
