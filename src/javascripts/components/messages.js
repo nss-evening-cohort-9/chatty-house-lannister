@@ -91,6 +91,7 @@ const deleteMessage = (e) => {
         messages.splice(i, 1);
       }
       domStringBuilder();
+      funThing();
     }
   }
 };
@@ -162,18 +163,9 @@ const addMessage = () => {
     console.error('Too many messages');
   }
 };
-// edit function
-// const editButton = document.getElementsByClassName('.editBox');
+// EDIT
 
-// const newEditHide = (e) => {
-//   e.target.classList.toggle('hideStuff'); // hides edit button
-//   e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
-//   e.target.parentNode.firstChild.nextSibling.firstChild
-// .nextSibling.classList.toggle('hideStuff');
-//   e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
-//   classEdit.classList.toggle('hideStuff');
-// }
-
+// this is the function that saves the new message that was edited to the messages div//
 const saveMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
@@ -189,12 +181,7 @@ const saveMessage = (e) => {
   }
 };
 
-// const funEdit = () => {
-//   for (let i = 0; i < messages.length; i += 1) {
-//     document.getElementById(`edit${[i]}`).addEventListener('click', textEdit);
-//   }
-// };
-
+// click events for saving the message and editing it upon button click of save and edit //
 const editEvents = () => {
   document.getElementById('messages').addEventListener('click', saveMessage);
   for (let i = 0; i < classEdit.length; i += 1) {
@@ -203,7 +190,6 @@ const editEvents = () => {
   for (let i = 0; i < saveButton.length; i += 1) {
     saveButton[i].addEventListener('click', textEdit);
   }
-  // document.
 };
 
 // end edit
@@ -212,7 +198,6 @@ const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
   document.getElementById('clearButton').addEventListener('click', clearAll);
   document.getElementById('messages').addEventListener('click', deleteMessage);
-  // document.getElementById('messages').addEventListener('click', textEdit);
 };
 
 const getData = () => {
