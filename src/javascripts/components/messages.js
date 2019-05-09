@@ -9,6 +9,9 @@ let username = '';
 
 const getMessageArray = () => messages;
 const getId = () => id;
+const saveButton = document.getElementsByClassName('save');
+const classEdit = document.getElementsByClassName('edit');
+
 
 // checks to see if clear button should be visible or hidden
 const checkMessagesArray = () => {
@@ -26,6 +29,27 @@ const usernameSelector = () => {
     if (usernameButtons[i].checked === true) {
       username = usernameButtons[i].id;
     }
+  }
+};
+
+const textEdit = (e) => {
+  // editButton.classList.toggle('hideStuff');
+  e.target.classList.toggle('hideStuff'); // hides edit button
+  // e.target.previousSibling.classList.toggle('hideStuff'); // hides readable text area
+  // console.error(e.target.parentNode.firstChild.nextSibling.firstChild);
+  e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
+  e.target.parentNode.firstChild.nextSibling.firstChild.nextSibling.classList.toggle('hideStuff');
+  e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
+  // saveButton.classList.toggle('hideStuff');
+  // classEdit.classList.toggle('hideStuff');
+};
+
+const funThing = () => {
+  for (let i = 0; i < classEdit.length; i += 1) {
+    classEdit[i].addEventListener('click', textEdit);
+  }
+  for (let i = 0; i < saveButton.length; i += 1) {
+    saveButton[i].addEventListener('click', textEdit);
   }
 };
 
@@ -105,6 +129,7 @@ const buildBotMessage = (botPersonality, textInput) => {
     domStringBuilder();
     id += 1;
     deleteButtonEvents();
+    funThing();
   } else {
     console.error('Too many messages');
   }
@@ -131,6 +156,7 @@ const addMessage = () => {
     id += 1;
     document.getElementById('message-input').value = '';
     deleteButtonEvents();
+    funThing();
     setTimeout(() => { buildBotMessage(selectedPersonality, messageText); }, 3000);
   } else {
     console.error('Too many messages');
@@ -138,20 +164,6 @@ const addMessage = () => {
 };
 // edit function
 // const editButton = document.getElementsByClassName('.editBox');
-const saveButton = document.getElementsByClassName('save');
-const classEdit = document.getElementsByClassName('edit');
-
-const textEdit = (e) => {
-  // editButton.classList.toggle('hideStuff');
-  e.target.classList.toggle('hideStuff'); // hides edit button
-  // e.target.previousSibling.classList.toggle('hideStuff'); // hides readable text area
-  // console.error(e.target.parentNode.firstChild.nextSibling.firstChild);
-  e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
-  e.target.parentNode.firstChild.nextSibling.firstChild.nextSibling.classList.toggle('hideStuff');
-  e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
-  // saveButton.classList.toggle('hideStuff');
-  // classEdit.classList.toggle('hideStuff');
-};
 
 // const newEditHide = (e) => {
 //   e.target.classList.toggle('hideStuff'); // hides edit button
@@ -171,14 +183,6 @@ const saveMessage = (e) => {
         // console.error(messages[i].messageText);
         // console.error(messages);
         domStringBuilder();
-        const funThing = () => {
-          for (i = 0; i < classEdit.length; i += 1) {
-            classEdit[i].addEventListener('click', textEdit);
-          }
-          for (i = 0; i < saveButton.length; i += 1) {
-            saveButton[i].addEventListener('click', textEdit);
-          }
-        };
         funThing();
       }
     }
