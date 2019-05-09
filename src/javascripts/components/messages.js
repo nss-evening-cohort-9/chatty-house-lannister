@@ -39,7 +39,7 @@ const domStringBuilder = () => {
     domString += `<textarea class="form-control editBox  hideStuff" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
     domString += `<div id=${message.id}><p>${message.messageText}</p></div>`;
     domString += '</div>';
-    domString += `<button type="button" id="edit${message.id}" class="btn btn-danger edit">Edit</button>`;
+    domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger save  hideStuff">Save</button>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
     domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
@@ -137,35 +137,50 @@ const addMessage = () => {
   }
 };
 // edit function
-// const editButton = document.closest('editBox');
-const saveButton = document.getElementsByClassName('save');
+// const editButton = document.getElementsByClassName('.editBox');
+// const saveButton = document.getElementsByClassName('save');
 const classEdit = document.getElementsByClassName('edit');
 
-const editBox = (e) => {
-  const editButton = document.getElementsByClassName('editBox');
-  for(let i = 0; i < editButton.length; i += 1) {
-    const targetButton = editButton[i];
-  targetButton.addEventListener('click', (e) => {
-    const editBtn = e.target.id.parentNode.parentNode.id
-    editMessage(editButton);
+// const editBox = (e) => {
+//   const editButton = document.getElementsByClassName('editBox');
+//   for(let i = 0; i < editButton.length; i += 1) {
+//     const targetButton = editButton[i];
+//   targetButton.addEventListener('click', (e) => {
+//     const editBtn = e.target.id.parentNode.parentNode.id
+//     editMessage(editBtn);
 
-  })
-}
+//   })
+// };
 
-const textEdit = () => {
-  editButton.classList.toggle('hideStuff');
-  saveButton.classList.toggle('hideStuff');
-  classEdit.classList.toggle('hideStuff');
+const textEdit = (e) => {
+  // editButton.classList.toggle('hideStuff');
+  e.target.classList.toggle('hideStuff'); // hides edit button
+  // e.target.previousSibling.classList.toggle('hideStuff'); // hides readable text area
+  // console.error(e.target.parentNode.firstChild.nextSibling.firstChild);
+  e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
+  e.target.parentNode.firstChild.nextSibling.firstChild.nextSibling.classList.toggle('hideStuff');
+  e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
+  // saveButton.classList.toggle('hideStuff');
+  // classEdit.classList.toggle('hideStuff');
 };
 
-const editMessage = (e) => {
+// const newEditHide = (e) => {
+//   e.target.classList.toggle('hideStuff'); // hides edit button
+//   e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
+//   e.target.parentNode.firstChild.nextSibling.firstChild
+// .nextSibling.classList.toggle('hideStuff');
+//   e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
+//   classEdit.classList.toggle('hideStuff');
+// }
+
+const saveMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
-    if (e.target.classList.contains('edit')) {
+    if (e.target.classList.contains('save')) {
       if (buttonId === messages[i].id.toString()) {
         messages[i].messageText = document.getElementById(messages[i].id).value;
-        console.error(messages[i].messageText);
-        console.error(messages);
+        // console.error(messages[i].messageText);
+        // console.error(messages);
         domStringBuilder();
       }
     }
@@ -179,13 +194,14 @@ const editMessage = (e) => {
 // };
 
 const editEvents = () => {
-  document.getElementById('messages').addEventListener('click', editMessage);
+  document.getElementById('messages').addEventListener('click', saveMessage);
   for (let i = 0; i < classEdit.length; i += 1) {
     classEdit[i].addEventListener('click', textEdit);
   }
-  for (let i = 0; i < saveButton.length; i += 1) {
-    saveButton[i].addEventListener('click', textEdit);
-  }
+  // for (let i = 0; i < saveButton.length; i += 1) {
+  //   saveButton[i].addEventListener('click', textEdit);
+  // }
+  // document.
 };
 
 // end edit
