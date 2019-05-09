@@ -16,9 +16,11 @@ const cardBackground = () => {
     if (darkBackground.checked === true) {
       cardDark[i].style.backgroundColor = '#000000';
       cardDark[i].style.color = '#FFFFFF';
+      messagesDiv.style.backgroundColor = '#FFFFFF';
     } else {
       cardDark[i].style.backgroundColor = '#FFFFFF';
       cardDark[i].style.color = '#000000';
+      messagesDiv.style.backgroundColor = '#FFFFFF';
     }
   }
 };
