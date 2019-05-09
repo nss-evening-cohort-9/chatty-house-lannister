@@ -138,19 +138,8 @@ const addMessage = () => {
 };
 // edit function
 // const editButton = document.getElementsByClassName('.editBox');
-// const saveButton = document.getElementsByClassName('save');
+const saveButton = document.getElementsByClassName('save');
 const classEdit = document.getElementsByClassName('edit');
-
-// const editBox = (e) => {
-//   const editButton = document.getElementsByClassName('editBox');
-//   for(let i = 0; i < editButton.length; i += 1) {
-//     const targetButton = editButton[i];
-//   targetButton.addEventListener('click', (e) => {
-//     const editBtn = e.target.id.parentNode.parentNode.id
-//     editMessage(editBtn);
-
-//   })
-// };
 
 const textEdit = (e) => {
   // editButton.classList.toggle('hideStuff');
@@ -182,6 +171,15 @@ const saveMessage = (e) => {
         // console.error(messages[i].messageText);
         // console.error(messages);
         domStringBuilder();
+        const funThing = () => {
+          for (i = 0; i < classEdit.length; i += 1) {
+            classEdit[i].addEventListener('click', textEdit);
+          }
+          for (i = 0; i < saveButton.length; i += 1) {
+            saveButton[i].addEventListener('click', textEdit);
+          }
+        };
+        funThing();
       }
     }
   }
@@ -198,9 +196,9 @@ const editEvents = () => {
   for (let i = 0; i < classEdit.length; i += 1) {
     classEdit[i].addEventListener('click', textEdit);
   }
-  // for (let i = 0; i < saveButton.length; i += 1) {
-  //   saveButton[i].addEventListener('click', textEdit);
-  // }
+  for (let i = 0; i < saveButton.length; i += 1) {
+    saveButton[i].addEventListener('click', textEdit);
+  }
   // document.
 };
 
@@ -210,7 +208,7 @@ const buttonEvents = () => {
   document.getElementById('add-button').addEventListener('click', addMessage);
   document.getElementById('clearButton').addEventListener('click', clearAll);
   document.getElementById('messages').addEventListener('click', deleteMessage);
-  // document.getElementById('messages').addEventListener('click', editMessage);
+  // document.getElementById('messages').addEventListener('click', textEdit);
 };
 
 const getData = () => {
