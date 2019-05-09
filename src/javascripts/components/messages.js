@@ -9,6 +9,8 @@ let username = '';
 
 const getMessageArray = () => messages;
 const getId = () => id;
+
+// Edit Definitions //
 const saveButton = document.getElementsByClassName('save');
 const classEdit = document.getElementsByClassName('edit');
 
@@ -33,18 +35,15 @@ const usernameSelector = () => {
 };
 
 const textEdit = (e) => {
-  // editButton.classList.toggle('hideStuff');
   e.target.classList.toggle('hideStuff'); // hides edit button
-  // e.target.previousSibling.classList.toggle('hideStuff'); // hides readable text area
-  // console.error(e.target.parentNode.firstChild.nextSibling.firstChild);
-  e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff');
-  e.target.parentNode.firstChild.nextSibling.firstChild.nextSibling.classList.toggle('hideStuff');
-  e.target.nextSibling.classList.toggle('hideStuff'); // unhides save button
-  // saveButton.classList.toggle('hideStuff');
-  // classEdit.classList.toggle('hideStuff');
+  e.target.parentNode.firstChild.nextSibling.firstChild.classList.toggle('hideStuff'); // shows textBox area so we can edit
+  e.target.parentNode.firstChild.nextSibling.firstChild.nextSibling.classList.toggle('hideStuff'); // hides original messageText
+  e.target.nextSibling.classList.toggle('hideStuff'); // shows save button
 };
 
-const funThing = () => {
+// adds click events to each edit and save button and loops through them to ensure you
+// are targeting the correct one
+const saveAndEditButtonEvents = () => {
   for (let i = 0; i < classEdit.length; i += 1) {
     classEdit[i].addEventListener('click', textEdit);
   }
@@ -91,7 +90,7 @@ const deleteMessage = (e) => {
         messages.splice(i, 1);
       }
       domStringBuilder();
-      funThing();
+      saveAndEditButtonEvents();
     }
   }
 };
@@ -130,7 +129,7 @@ const buildBotMessage = (botPersonality, textInput) => {
     domStringBuilder();
     id += 1;
     deleteButtonEvents();
-    funThing();
+    saveAndEditButtonEvents();
   } else {
     console.error('Too many messages');
   }
@@ -157,7 +156,7 @@ const addMessage = () => {
     id += 1;
     document.getElementById('message-input').value = '';
     deleteButtonEvents();
-    funThing();
+    saveAndEditButtonEvents();
     setTimeout(() => { buildBotMessage(selectedPersonality, messageText); }, 3000);
   } else {
     console.error('Too many messages');
@@ -175,7 +174,7 @@ const saveMessage = (e) => {
         // console.error(messages[i].messageText);
         // console.error(messages);
         domStringBuilder();
-        funThing();
+        saveAndEditButtonEvents();
       }
     }
   }
