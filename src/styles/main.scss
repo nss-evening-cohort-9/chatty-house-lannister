@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-  background-color: aqua;
+  background-color:white;
 }
 
 #navbar {
@@ -24,7 +24,7 @@ body {
 
   #username-buttons {
     position: fixed;
-    flex-direction: column; 
+    flex-direction: column;
     height: auto;
 
     .usernameButtons {
@@ -34,7 +34,7 @@ body {
       font-weight: bold;
       font-size: 1.875em;
       box-shadow: 5px 5px rgba(160, 160, 160, 0.671);
-      transition-duration: 0.4s; 
+      transition-duration: 0.4s;
       transition-duration: 0.4s;
       text-decoration: none;
       overflow: hidden;
@@ -82,8 +82,17 @@ body {
       text-decoration: underline;
     }
     #messageText {
+        // position: absolute;
       margin-top: 2%;
       font-size: 1.2em;
     }
+
+    .editBox {
+      font-size: 1.2em;
+    }
   }
+}
+
+.hideStuff {
+  display: none;
 }

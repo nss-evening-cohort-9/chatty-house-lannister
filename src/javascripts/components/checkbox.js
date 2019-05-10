@@ -4,9 +4,9 @@ const messagesDiv = document.getElementById('messages');
 
 const largeText = () => {
   if (fontSize.checked === true) {
-    messagesDiv.style.fontSize = '20px';
+    messagesDiv.style.fontSize = '24px';
   } else {
-    messagesDiv.style.fontSize = '12px';
+    messagesDiv.style.fontSize = '16px';
   }
 };
 
@@ -16,9 +16,11 @@ const cardBackground = () => {
     if (darkBackground.checked === true) {
       cardDark[i].style.backgroundColor = '#000000';
       cardDark[i].style.color = '#FFFFFF';
+      messagesDiv.style.backgroundColor = '#FFFFFF';
     } else {
       cardDark[i].style.backgroundColor = '#FFFFFF';
       cardDark[i].style.color = '#000000';
+      messagesDiv.style.backgroundColor = '#FFFFFF';
     }
   }
 };
@@ -40,4 +42,4 @@ const checkBoxEvents = () => {
   darkBackground.addEventListener('click', darkTheme);
 };
 
-export default { checkBoxEvents };
+export default { checkBoxEvents, cardBackground };
