@@ -6,6 +6,7 @@ import botMsg from './chatBot';
 let messages = [];
 let id = 6;
 let username = '';
+let textType = 'div';
 
 const getMessageArray = () => messages;
 const getId = () => id;
@@ -43,10 +44,7 @@ const domStringBuilder = () => {
   messages.forEach((message) => {
     domString += '<div class="card">';
     domString += `<h2 id="username">${message.username}</h2>`;
-    domString += '<div class="input-group editStuff">';
-    domString += `<textarea class="form-control editBox" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
-    domString += '</div>';
-    domString += `<div id=${message.id}><p>${message.messageText}</p></div>`;
+    domString += `<${textType} class="editText" id=${message.id}>${message.messageText}</${textType}>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
     domString += `<button type="button" id="${message.id}" class="btn btn-danger save">Save</button>`;
     domString += `<p id="id">Message ID: ${message.id} </p>`;
@@ -86,9 +84,12 @@ const deleteButtonEvents = () => {
 const saveMessage = (e) => {
   const buttonId = e.target.id;
   for (let i = 0; i < messages.length; i += 1) {
-    if (e.target.classList.contains('edit')) {
+    if (e.target.classList.contains('save')) {
       if (buttonId === messages[i].id.toString()) {
-        document.getElementsByClassName('editBox').style.display = 'none';
+        let newMessage = '';
+        newMessage = document.getElementById(`${messages[i].id}`).value;
+        messages[i].messageText = newMessage;
+        textType = 'div';
         domStringBuilder();
       }
     }
@@ -101,10 +102,7 @@ const editMessage = (e) => {
   for (let i = 0; i < messages.length; i += 1) {
     if (e.target.classList.contains('edit')) {
       if (buttonId === messages[i].id.toString()) {
-        document.getElementById(`${messages[i].id}`).style.visibility = 'visible';
-        messages[i].messageText = document.getElementById(`${messages[i].id}`).value;
-        console.error(messages[i].messageText);
-        console.error(messages);
+        textType = 'textArea';
         domStringBuilder();
       }
     }

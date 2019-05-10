@@ -81,24 +81,8 @@ body {
       align-self: flex-start;
       text-decoration: underline;
     }
-    .editBox {
-      background-color: lightcoral;
-      height: auto;
-      font-size: 1.2em;
-      position: relative;
-      // z-index: 2;
-      top: 78px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      visibility: hidden;
-    }
-    #messageText {
-      // position: absolute;
-      margin-top: 2%;
-      font-size: 1.2em;
-      position: relative;
-      margin-bottom: 20px;
-      // z-index: 1;
+    .editText{
+      width: 100%;
     }
   }
 }
