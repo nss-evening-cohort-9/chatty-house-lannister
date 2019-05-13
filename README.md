@@ -3,8 +3,8 @@
 A message app that allows the user to write messages, clear and delete messages. The user may also increase font size and change themes
 
 ## Technologies
-Javascript 
-JSON 
+Javascript
+JSON
 XHR requests/ Axios
 Modules
 
@@ -13,7 +13,8 @@ Modules
 $ To get started, please follow the instructions found here: https://github.com/nss-nightclass-projects/Night-Class-Resources/blob/master/book-2-patterns-and-tools/chapters/task-runners.md
 
 ```
-
+## Screenshot
+![Chatty](https://raw.githubusercontent.com/nss-evening-cohort-9/chatty-house-lannister/master/screenshot/chatty.png)
 ## Running
 ```
 $ npm start
@@ -29,15 +30,15 @@ In addition to the above, several "**BONUS**" functionalities have been implemen
 * A "Chatbot" that responds to specific statements with statements of its own (See below for additional detail).
 * Ability to "like" and "unlike" messages.
 * Ability to select different users: The "username" of each user created message corresponds to the user that was selected when the message was inputted.
-* 
+*
 
 
 Continue reading below for additional information on certain "**BONUS**" functionalities' usage.
 
 ## Chatbot
-Depending on which chatbot personality is selected, and what the user inputs, there can be multiple outputs. 
+Depending on which chatbot personality is selected, and what the user inputs, there can be multiple outputs.
 
-The first listed input of each personality will reciprocate a greeting, while the second listed input will respond with a random statement befitting of the personality, and the context of the input. 
+The first listed input of each personality will reciprocate a greeting, while the second listed input will respond with a random statement befitting of the personality, and the context of the input.
 
 Inputs must be identical to those documented, otherwise the bot will not recognize the statement.
 ### Possible Inputs:
