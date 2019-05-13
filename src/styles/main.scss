@@ -14,6 +14,7 @@ body {
   #message-input {
     height: 130px;
     width: 900px !important;
+    margin-left: -100px;
     text-align: center;
   }
 }
@@ -72,6 +73,7 @@ body {
   margin-top: auto;
   padding: 5px;
   align-items: center;
+  margin-left: 50px;
   .card {
     align-items: center;
     padding: 5px;
@@ -104,13 +106,14 @@ body {
 .logo {
   width: 370px;
   height: 200px;
+  margin-right: -125px;
 }
 
 .checkbox {
   width: 500px;
   justify-content: center;
   justify-content: flex-start;
-  margin-left: -200px;
+  margin-left: -180px;
 }
 
 .darkThemeBox {
@@ -122,4 +125,10 @@ body {
 #bot-personality {
   display: flex;
   justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-right: -100px;
 }
