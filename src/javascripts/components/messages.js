@@ -2,6 +2,7 @@ import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
 import botMsg from './chatBot';
+import checkBox from '../components/checkbox';
 
 let messages = [];
 let id = 6;
@@ -72,6 +73,7 @@ const domStringBuilder = () => {
   });
   util.printToDom('messages', domString);
   checkMessagesArray();
+  checkBox.cardBackground();
 };
 
 // clear button - clears all the elements from the array and prints empty array to DOM
