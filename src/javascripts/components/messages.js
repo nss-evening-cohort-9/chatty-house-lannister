@@ -2,6 +2,7 @@ import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
 import botMsg from './chatBot';
+import checkBox from './checkbox';
 
 let messages = [];
 let id = 6;
@@ -18,7 +19,7 @@ const classEdit = document.getElementsByClassName('edit');
 // checks to see if clear button should be visible or hidden
 const checkMessagesArray = () => {
   if (messages.length === 0) {
-    document.getElementById('clearButton').style.display = 'none';
+    document.getElementById('clearButton').style.display = '';
   } else if (messages.length !== 0) {
     document.getElementById('clearButton').style.display = 'block';
   }
@@ -72,6 +73,7 @@ const domStringBuilder = () => {
   });
   util.printToDom('messages', domString);
   checkMessagesArray();
+  checkBox.cardBackground();
 };
 
 // clear button - clears all the elements from the array and prints empty array to DOM
@@ -171,8 +173,6 @@ const saveMessage = (e) => {
     if (e.target.classList.contains('save')) {
       if (buttonId === messages[i].id.toString()) {
         messages[i].messageText = document.getElementById(messages[i].id).value;
-        // console.error(messages[i].messageText);
-        // console.error(messages);
         domStringBuilder();
         saveAndEditButtonEvents();
       }
@@ -210,7 +210,6 @@ const getData = () => {
       domStringBuilder();
       deleteButtonEvents();
       editEvents();
-      // funEdit();
     })
   // If wrong response, then return this
     .catch((error) => {

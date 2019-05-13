@@ -12,10 +12,15 @@ body {
   align-self: center;
 
   #message-input {
-    height: 200px;
-    width: 400px;
+    height: 130px;
+    width: 900px !important;
+    margin-left: -100px;
     text-align: center;
   }
+}
+.navbar {
+  background-color:lightgrey;
+  justify-content: space-around;
 }
 
 #buttons {
@@ -68,6 +73,7 @@ body {
   margin-top: auto;
   padding: 5px;
   align-items: center;
+  margin-left: 40px;
   .card {
     align-items: center;
     padding: 5px;
@@ -95,4 +101,35 @@ body {
 
 .hideStuff {
   display: none;
+}
+
+.logo {
+  width: 370px;
+  height: 200px;
+  margin-right: -125px;
+}
+
+.checkbox {
+  width: 500px;
+  justify-content: center;
+  justify-content: flex-start;
+  margin-left: -180px;
+}
+
+.darkThemeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#bot-personality {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-right: -100px;
+  // text-transform: none;
 }

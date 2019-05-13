@@ -9,28 +9,42 @@
 </head>
 <body>
   <div id="navbar">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Chatty</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+      <img class = "logo"src="./styles//images/logo.png" alt="">
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" id="message-input" data-meteor-emoji="true" type="text" placeholder="Type here" aria-label="msg-input">
+          <form class="form-inline my-2 my-lg-0 justify-content-center">
+              <input class="form-control mr-sm-3" id="message-input" data-meteor-emoji="true" type="text" placeholder="Type here" aria-label="msg-input">
+              <div class = "buttons">
               <button class="btn btn-outline-success my-2 my-sm-0" id="add-button" type="button">Send</button>
               <button class="btn btn-outline-danger my-2 my-sm-0" id="clearButton"type="button">Clear</button>
-            <div>
+            </div>
+            <div class = "container-bottom d-flex justify-content-around">
+              <div class = "checkbox d-flex flex-row margin-left">
+                <div class = "darkThemeBox">
+                <div class = "col d-flex align-items-baseline">
                 <input type="checkbox" id="darkTheme" name="darkTheme"
                        unchecked>
-                <label for="darkTheme">Dark Theme</label>
+                <label for="darkTheme">DARK THEME</label>
               </div>
+            </div>
               <div>
+                </div>
+                <div class = "fontBox">
+                <div class = "col d-flex align-items-baseline">
                   <input type="checkbox" id="largeText" name="largeText"
                          unchecked>
-                  <label for="largeText">Enlarge Text</label>
+                  <label for="largeText">LARGE TEXT</label>
                 </div>
+                </div>
+              </div>
                 <div id="bot-personality">
                   <input type="radio" id="gBot" name="personality" value="gangstaBot"> WEST SIDE
-                  <input type="radio" id="nBot" name="personality" value="normalBot"  checked="checked"> Normal
+                  <input type="radio" id="nBot" name="personality" value="normalBot"  checked="checked"> NORMAL
                   <input type="radio" id="hBot" name="personality" value="howdyBot"> DARN TOOTIN'
+                  </div>
+                </div>
           </form>
+        </div>
         </div>
       </nav>
     </div>
