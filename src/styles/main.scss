@@ -12,10 +12,14 @@ body {
   align-self: center;
 
   #message-input {
-    height: 200px;
-    width: 400px;
+    height: 130px;
+    width: 800px !important;
     text-align: center;
   }
+}
+.navbar {
+  background-color:lightgrey;
+  justify-content: space-around;
 }
 
 #buttons {
@@ -95,4 +99,26 @@ body {
 
 .hideStuff {
   display: none;
+}
+
+.logo {
+  width: 400px;
+  height: 200px;
+}
+
+// .darkTheme {
+//   justify-content: center;
+// }
+
+
+.checkbox {
+  width: 500px;
+  justify-content: center;
+  // height: 50px;
+}
+
+.darkThemeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
