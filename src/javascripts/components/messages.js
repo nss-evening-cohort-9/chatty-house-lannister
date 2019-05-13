@@ -210,7 +210,6 @@ const getData = () => {
       domStringBuilder();
       deleteButtonEvents();
       editEvents();
-      // funEdit();
     })
   // If wrong response, then return this
     .catch((error) => {
