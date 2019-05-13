@@ -2,7 +2,7 @@ import messageData from '../helpers/messagesData';
 import util from '../helpers/util';
 import timestamp from '../helpers/timestamp';
 import botMsg from './chatBot';
-import checkBox from '../components/checkbox';
+import checkBox from './checkbox';
 
 let messages = [];
 let id = 6;
